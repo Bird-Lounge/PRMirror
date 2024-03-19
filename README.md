@@ -7,7 +7,7 @@ Mirrors pull requests from one repository to another.  This is primarily meant f
 - Copy the included file ``merge-upstream-pull-request.sh`` into the parent directory.
 - Make sure that `merge-upstream-pull-request.sh` is marked as executable (`chmod +x merge-upstream-pull-request.sh`)
 - Clone the target repo (i.e, the one you want to mirror to) to disk in the parent directory.
-- Make sure that you can push new commits back to the repository from the cloned directory, IE: Setup SSH keys or Github Username/Password
+- Make sure that you can push new commits back to the repository from the cloned directory, IE: Setup SSH keys or use a PAT (see below)
 - A basic config is included.
   - GitHubToken should be a [GitHub Access Token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
   - Your GitHub Access Token needs requested through the owning org if it's an org repo, with basically all permissions.  The ones that work for us are as follows:
@@ -15,7 +15,7 @@ Mirrors pull requests from one repository to another.  This is primarily meant f
 	- Repo Read access to Dependabot alerts, actions variables, administration, codespaces, codespaces lifecycle admin, codespaces metadata, dependabot secrets, metadata, repository advisories, secret scanning alerts, secrets, and security events 
 	- Repo Read and Write access to actions, code, codespaces secrets, commit statuses, deployments, discussions, environments, issues, merge queues, pages, pull requests, repository hooks, and workflows 
 	- You can *probably* trim this down somewhat, but we've had certain mirrors fail due to touching workflows & similar (i.e, updates to the CI suite) - better safe than sorry!
-  - Your git CLI needs to be properly configured
+  - Your git CLI needs to be properly configured to use the personal access token *or* an SSH key to avoid password input every time the bot pushes a new branch.
   - Upstream is at [tgstation/tgstation](https://github.com/tgstation/tgstation/) and Downstream is at [Bird-Lounge/Skyraptor-SS13](https://github.com/Bird-Lounge/Skyraptor-SS13)
     - UpstreamOwner is usually tgstation
     - UpstreamRepo is usually also tgstation
