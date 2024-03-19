@@ -26,4 +26,3 @@ debug
 mirror.db
 mirror.db.lock
 .vs/
-config.json

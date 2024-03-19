@@ -135,7 +135,7 @@ func (p PRMirror) MirrorPR(pr *github.PullRequest) (int, error) {
 		return 0, errors.New("prmirror: tried to mirror a PR which has already been mirrored")
 	}
 
-	log.Infof("Mirroring PR [%d]: %s from %s\n", pr.GetNumber(), pr.GetTitle(), pr.User.GetLogin())
+	log.Debugf("Mirroring PR [%d]: %s from %s\n", pr.GetNumber(), pr.GetTitle(), pr.User.GetLogin())
 
 	cmd := exec.Command(fmt.Sprintf("%s%s", p.Configuration.RepoPath, p.Configuration.ToolPath), strconv.Itoa(pr.GetNumber()), pr.GetTitle())
 	cmd.Dir = p.Configuration.RepoPath
@@ -164,6 +164,7 @@ func (p PRMirror) MirrorPR(pr *github.PullRequest) (int, error) {
 
 	pr, _, err = p.GitHubClient.PullRequests.Create(*p.Context, p.Configuration.DownstreamOwner, p.Configuration.DownstreamRepo, &newPR)
 	if err != nil {
+		log.Criticalf("Error while creating PR for %d: %s\n", pr.GetNumber(), err)
 		return 0, err
 	}
 

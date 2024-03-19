@@ -1,0 +1,10 @@
+{
+	"GitHubToken":"yourtoken",
+	"UpstreamOwner":"tgstation",
+	"UpstreamRepo":"tgstation",
+	"DownstreamOwner":"YourOrg",
+	"DownstreamRepo":"YourRepo",
+	"RepoPath":"/home/your_user/mirror_root/YourRepo/",
+	"ToolPath":"../merge-upstream-pull-request.sh",
+	"UseWebhook":false
+}
